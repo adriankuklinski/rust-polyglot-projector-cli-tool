@@ -1,7 +1,11 @@
-use rust_polyglot_projector_cli_tool::opts::Opts;
-use clap::Parser;
+use rust_polyglot_projector_cli_tool::{opts::Opts, config::Config};
 
-fn main() {
-    let opts = Opts::parse();
+use clap::Parser;
+use anyhow::Result;
+
+fn main() -> Result<()> {
+    let opts: Config = Opts::parse().try_into()?;
     println!("{:?}", opts);
+
+    return Ok(());
 }
